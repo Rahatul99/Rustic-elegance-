@@ -1,10 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Header from '../Components/Header';
+import Footer from '../Components/Footer';
+import Cards from '../Components/Cards';
 
 const Main = () => {
     return (
         <div>
-            <Outlet></Outlet>
+            <Header />
+                <div className="min-h-[calc(100vh-137px)]">
+                    <Outlet />
+                </div>
+            <Footer />
         </div>
     );
 };

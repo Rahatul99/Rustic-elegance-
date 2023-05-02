@@ -6,10 +6,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from './Layout/Main';
-import Home from './Components/Home';
+import ErrorPage from './ErrorPage';
+import Banner from './Components/Banner/Banner';
+import Cards from './Components/Cards';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import ErrorPage from './ErrorPage';
+import Recipe from './Components/Recipe';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +22,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />
+        element: <Banner />
+      },
+      {
+        path: 'cards',
+        element: <Cards />
       },
       {
         path: '/login',
@@ -28,9 +35,13 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
+      },
+      {
+        path: '/recipe',
+        element: <Recipe />
       }
     ]
-  },
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
