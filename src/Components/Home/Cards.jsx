@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazy-load';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const Cards = () => {
@@ -12,14 +13,29 @@ const Cards = () => {
     }, []);
 
     if (!data) {
-        return 'loading...'
-    }
+        return(
+            <div className="flex justify-center items-center h-screen">
+            <div className="animate-spin rounded-full h-20 w-20 border-4 border-solid">
+                <style>
+                {`
+                    @keyframes spin {
+                    0% { border-color: #fuchsia; }
+                    25% { border-color: #blue; }
+                    50% { border-color: #green; }
+                    75% { border-color: #yellow; }
+                    100% { border-color: #red; }
+                    }
+                `}
+                </style>
+            </div>
+            </div>
+    )}
 
     return (
         <>
             {data.map((item, index) => (
                 <div className="card w-96 glass" key={index}>
-                    <figure><img src={item.chef_img} alt="car!" /></figure>
+                    <figure><LazyLoad><img src={item.chef_img} alt="car!" /></LazyLoad></figure>
                     <div className="card-body">
                         <h2 className="card-title">Chef Name:{item.name}</h2>
                         <p>Experince: {item.experience}</p>
@@ -36,3 +52,9 @@ const Cards = () => {
 };
 
 export default Cards;
+
+
+
+
+
+

@@ -1,11 +1,18 @@
 import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { signIn, googleLogin } = useContext(AuthContext);
-  const provider = new GoogleAuthProvider();
+  const { signIn, googleLogin, gitHubLogIn } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
+
 
   const handleLogin = event => {
     event.preventDefault();
@@ -14,33 +21,43 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
 
-    signIn( email, password )
-    .then(res =>{
-      const loggedUser = res.user;
-      console.log(loggedUser);
-    })
-    .catch((error) => {
-      console.log(error);
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-    });
+    signIn(email, password)
+      .then(res => {
+        const loggedUser = res.user;
+        navigate(from, {replace: true})
+      })
+      .catch((error) => {
+        console.log(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+      });
   }
 
   const handleGoogleLogin = () => {
-    googleLogin(provider)
-    .then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-    })
-    .catch((error) => {
-      console.log(error);
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-    });
+    googleLogin(googleProvider)
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+      });
   }
 
   const handleGitLogin = () => {
-    // handle Git login logic
+    gitHubLogIn(githubProvider)
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+      });
+
   }
   return (
     <>
@@ -73,6 +90,9 @@ const Login = () => {
                   Login
                 </button>
               </form>
+              <p className="text-gray-600 text-center mt-5">
+                Don't have an account? <Link to="/register" className="text-blue-600 hover:text-blue-800">Register here</Link>
+              </p>
             </div>
           </div>
         </div>

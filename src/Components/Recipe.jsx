@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { FaUtensils } from "react-icons/fa";
 import { Link, useLoaderData } from 'react-router-dom';
 import RestRecipe from './RestRecipe';
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Recipe = () => {
     const chefs = useLoaderData();
     if (!chefs) {
-        return 'loading..'
+        return <progress className="progress w-56"></progress>
     }
+
+
+
+    const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+    const handleAddFavorite = (recipe) => {
+      setFavoriteRecipes([...favoriteRecipes, recipe]);
+      toast.success(`${recipe.recipe_name} is your favorite recipe!`);
+      event.target.disabled = true;
+      event.target.innerText = 'Recipe is your favorite';
+    }
+
+
+
+
+
+
+
+
     return (
         <>
             {chefs.map((chef) => (
@@ -32,9 +54,10 @@ const Recipe = () => {
                     <div className="hero min-h-screen" style={{ backgroundImage: `https://images.unsplash.com/photo-1633287510125-d34b81602f14?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80` }}>
                         <div className="hero-content text-neutral-content">
 
+                            <ToastContainer />
 
                             <div className='grid md:grid-cols-3 gap-4 justify-items-center'>
-                                <RestRecipe recipes={chef.recipes} key={chef.id} />
+                                <RestRecipe recipes={chef.recipes} handleAddFavorite={handleAddFavorite} key={chef.id} />
                             </div>
                         </div>
                     </div>

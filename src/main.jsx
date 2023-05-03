@@ -13,6 +13,7 @@ import Register from './Components/Register';
 import Recipe from './Components/Recipe';
 import Banner from './Components/Home/Banner/Banner';
 import AuthProvider from './AuthProvider/AuthProvider';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/recipe/:id',
-        element: <Recipe />,
+        element: <PrivateRoute><Recipe /></PrivateRoute>,
         loader: ({params}) => fetch(`https://chef-recipe-hunter-server-side-rahatul99.vercel.app/chef/${params.id}`)
       }
     ]

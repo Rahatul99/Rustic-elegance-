@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
-    const handleRegister = event =>{
+    const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -42,8 +43,22 @@ const Register = () => {
                             <label className="font-semibold text-gray-600 pb-1 block">Password</label>
                             <input type="password" name="password" id="password" className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600" required />
 
+                            <label className="font-semibold text-gray-600 pb-1 block">Confirm Password</label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                // value={formData.confirmPassword}
+                                // onChange={handleInputChange}
+                                required
+                            />
+
                             <button type="submit" className="transition duration-200 bg-blue-600 hover:bg-blue-700 focus:bg-blue-800 focus:shadow-sm focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 rounded-lg text-white px-6 py-3 text-sm mt-5 w-full">Register</button>
                         </form>
+                        <p className="text-gray-600 text-center mt-5">
+                            Already have an account? <Link to="/login" className="text-blue-600 hover:text-blue-800">Login Here</Link>
+                        </p>
                     </div>
                 </div>
             </div>
