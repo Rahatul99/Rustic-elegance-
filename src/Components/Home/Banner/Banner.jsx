@@ -1,12 +1,6 @@
 import React from 'react';
-import Cards from '../Cards';
 import Popular from '../Popular';
-
-// import { Carousel } from 'bootstrap';
-// import { Carousel } from 'react-bootstrap/bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Carousel from 'react-bootstrap/Carousel';
-
+import Cards from '../Cards';
 
 const Banner = () => {
   return (

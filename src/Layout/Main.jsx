@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
-import Cards from '../Components/Cards';
+import Header from '../Components/Header/Header';
+import Footer from '../Components/Footer/Footer';
+
 
 const Main = () => {
     return (

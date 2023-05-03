@@ -7,12 +7,11 @@ import {
 } from "react-router-dom";
 import Main from './Layout/Main';
 import ErrorPage from './ErrorPage';
-import Banner from './Components/Banner/Banner';
-import Cards from './Components/Cards';
+import Cards from './Components/Home/Cards';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Recipe from './Components/Recipe';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import Banner from './Components/Home/Banner/Banner';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +25,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'cards',
-        element: <Cards />
+        element: <Cards />,
+        loader: () => fetch("https://chef-recipe-hunter-server-side-rahatul99.vercel.app/chef")
       },
       {
         path: '/login',
@@ -37,8 +37,9 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: '/recipe',
-        element: <Recipe />
+        path: '/recipe/:id',
+        element: <Recipe />,
+        loader: ({params}) => fetch(`https://chef-recipe-hunter-server-side-rahatul99.vercel.app/chef/${params.id}`)
       }
     ]
   }
