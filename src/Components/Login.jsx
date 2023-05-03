@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
+  const { signIn, googleLogin } = useContext(AuthContext);
+  const provider = new GoogleAuthProvider();
+
+  const handleLogin = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signIn( email, password )
+    .then(res =>{
+      const loggedUser = res.user;
+      console.log(loggedUser);
+    })
+    .catch((error) => {
+      console.log(error);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+    });
+  }
+
   const handleGoogleLogin = () => {
-    // handle Google login logic
+    googleLogin(provider)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    })
+    .catch((error) => {
+      console.log(error);
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+    });
   }
 
   const handleGitLogin = () => {
@@ -16,7 +49,7 @@ const Login = () => {
           <h1 className="font-bold text-white text-center text-4xl mb-5">Login</h1>
           <div className="backdrop-blur-sm bg-white/30 shadow-lg w-full rounded-lg divide-y divide-gray-200">
             <div className="px-5 py-7">
-              <form>
+              <form onSubmit={handleLogin}>
                 <label className="font-semibold text-gray-600 pb-1 block">Email Address</label>
                 <input
                   type="email"

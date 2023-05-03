@@ -1,6 +1,6 @@
 import React from 'react';
 // import { FaUtensils } from "react-icons/fa";
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import RestRecipe from './RestRecipe';
 
 const Recipe = () => {
@@ -24,7 +24,7 @@ const Recipe = () => {
                                 <h2 className="text-xl font-bold">Likes: <small className='font-thin'>43</small></h2>
 
                                 <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                                <button className="btn btn-primary">back to home</button>
+                                <Link to="/" className="btn btn-primary">back to home</Link>
                             </div>
                         </div>
                     </div>
