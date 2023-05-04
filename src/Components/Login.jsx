@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
@@ -10,6 +10,7 @@ const Login = () => {
   const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
+  const [error, setError] = useState('');
 
   const from = location.state?.from?.pathname || '/';
 
@@ -19,7 +20,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    setError('')
 
     signIn(email, password)
       .then(res => {
@@ -27,9 +28,7 @@ const Login = () => {
         navigate(from, {replace: true})
       })
       .catch((error) => {
-        console.log(error);
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
+        setError("User not found. Please Register");
       });
   }
 
@@ -40,9 +39,7 @@ const Login = () => {
         console.log(loggedUser);
       })
       .catch((error) => {
-        console.log(error);
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
+        setError(error?.message);
       });
   }
 
@@ -53,9 +50,7 @@ const Login = () => {
         console.log(loggedUser);
       })
       .catch((error) => {
-        console.log(error);
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
+        setError(error?.message);
       });
 
   }
@@ -82,6 +77,8 @@ const Login = () => {
                   id="password"
                   className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
+
+                <p className='text-black'>{error}</p>
 
                 <button
                   type="submit"

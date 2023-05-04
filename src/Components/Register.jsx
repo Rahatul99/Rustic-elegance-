@@ -14,26 +14,23 @@ const Register = () => {
         const photoUrl = form.photoUrl.value;
         const password = form.password.value;
         const confirmPassword =form.confirmPassword.value;
-
+        setError('');
         if (password.length < 6) {
             setError('Password should be at least 6 characters long.');
             return;
         }
-
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
-
         createUser(email, password)
             .then(res => {
                 const createdUser = res.user;
                 console.log(createdUser);
             })
             .catch(error => {
-                console.log(error);
+                setError(error?.message);
             })
-
     }
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-500 flex flex-col justify-center sm:py-12">
@@ -60,8 +57,6 @@ const Register = () => {
                                 name="confirmPassword"
                                 id="confirmPassword"
                                 className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                // value={formData.confirmPassword}
-                                // onChange={handleInputChange}
                                 required
                             />
 
