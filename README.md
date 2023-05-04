@@ -1,5 +1,5 @@
 # CHEF RECIPE HUNTER
-- [Assignment Live Link](https://www.google.com)
+- [Assignment Live Link](https://chef-recipe-hunter-clien-e539c.web.app/)
 
 - Users can browse through a list of chefs, view their profiles, and choose the one that best fits their needs.
 
