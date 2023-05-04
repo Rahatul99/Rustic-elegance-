@@ -20,9 +20,6 @@ const Popular = () => {
                             <div className="card-body items-center">
                                 <h2 className="card-title">Cooking Period</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur cumque nobis, accusamus commodi ex similique architecto ducimus minus distinctio praesentium.</p>
-                                {/* <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">Learn now!</button>
-                                </div> */}
                             </div>
                         </div>
                         <div className="card w-96 backdrop-blur-sm bg-white/30 p-5">
@@ -33,9 +30,6 @@ const Popular = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                    <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button> */}
                 </div>
             </div>
         </div>

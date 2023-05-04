@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { FaUtensils } from "react-icons/fa";
 import { Link, useLoaderData } from 'react-router-dom';
 import RestRecipe from './RestRecipe';
 
@@ -13,8 +12,6 @@ const Recipe = () => {
         return <progress className="progress w-56"></progress>
     }
 
-
-
     const [favoriteRecipes, setFavoriteRecipes] = useState([]);
     const handleAddFavorite = (recipe) => {
       setFavoriteRecipes([...favoriteRecipes, recipe]);
@@ -22,13 +19,6 @@ const Recipe = () => {
       event.target.disabled = true;
       event.target.innerText = 'Recipe is your favorite';
     }
-
-
-
-
-
-
-
 
     return (
         <>

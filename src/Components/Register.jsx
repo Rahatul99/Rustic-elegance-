@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Register = () => {
-    const { createUser, creatingUser } = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     const handleRegister = event => {
         event.preventDefault();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaRegStar, FaStar, FaUtensils } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from 'react-rating';
 
 const RestRecipe = ({ recipes, handleAddFavorite }) => {
