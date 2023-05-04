@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
 
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -12,8 +13,18 @@ const Register = () => {
         const email = form.email.value;
         const photoUrl = form.photoUrl.value;
         const password = form.password.value;
+        const confirmPassword =form.confirmPassword.value;
 
-        console.log(name, email, photoUrl, password);
+        if (password.length < 6) {
+            setError('Password should be at least 6 characters long.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
         createUser(email, password)
             .then(res => {
                 const createdUser = res.user;
@@ -53,6 +64,8 @@ const Register = () => {
                                 // onChange={handleInputChange}
                                 required
                             />
+
+                            <p className='text-black'>{error}</p>
 
                             <button type="submit" className="transition duration-200 bg-blue-600 hover:bg-blue-700 focus:bg-blue-800 focus:shadow-sm focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50 rounded-lg text-white px-6 py-3 text-sm mt-5 w-full">Register</button>
                         </form>
