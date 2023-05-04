@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LazyLoad from 'react-lazy-load';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
     const [data, setData] = useState();
@@ -39,10 +39,10 @@ const Cards = () => {
                     <div className="card-body">
                         <h2 className="card-title">Chef Name:{item.name}</h2>
                         <p>Experince: {item.experience}</p>
-                        <p>He delidbver jds {item.number_of_recipes}</p>
-                        <p>own likes: {item.like}</p>
+                        <p>Numbers of recipes: {item?.number_of_recipes}</p>
+                        <p>likes: {item?.total_like}</p>
                         <Link to={`/recipe/${item.id_}`} className="btn btn-primary">
-                            Learn more!
+                        View Recipes 
                         </Link>
                     </div>
                 </div>

@@ -10,9 +10,9 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const createUser = (email, password) => {
+    const createUser = (email, password, imageUrl) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        return createUserWithEmailAndPassword(auth, email, password, { photoURL: imageUrl });
 
     }
 
@@ -33,7 +33,7 @@ const AuthProvider = ({children}) => {
         setLoading(true)
         return signOut(auth);
     }
-
+    
     useEffect(()=> {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             console.log('logged in user inside state observer', loggedUser);

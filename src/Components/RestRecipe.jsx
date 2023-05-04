@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaUtensils } from "react-icons/fa";
+import { FaRegStar, FaStar, FaUtensils } from "react-icons/fa";
+import Rating from 'react-rating';
 
 const RestRecipe = ({ recipes, handleAddFavorite }) => {
   if (!recipes) {
@@ -10,20 +11,26 @@ const RestRecipe = ({ recipes, handleAddFavorite }) => {
     <>
       {recipes?.map((recipe) => (
         <div className="card w-96 backdrop-blur-sm bg-white/20 p-5">
-          <figure><FaUtensils className='w-10 h-10' /></figure>
+          <figure><img src={recipe?.recipe_img} alt="" /></figure>
           <div className="card-body">
             <h2 className="card-title text-xl font-bold">Recipe Name:{recipe?.recipe_name}</h2>
             <h2 className='text-xl font-bold'>Ingredients:</h2>
             <li>{recipe.recipe_ingredients.Ingredient_1}</li>
-            <li>parmesan cheese</li>
-            <li>red bell pepper</li>
-            <li>canned tomatoes</li>
-            <li>mozzarella cheese</li>
+            <li>{recipe.recipe_ingredients.Ingredient_2}</li>
+            <li>{recipe.recipe_ingredients.Ingredient_3}</li>
+            <li>{recipe.recipe_ingredients.Ingredient_4}</li>
+            <li>{recipe.recipe_ingredients.Ingredient_5}</li>
             <h2 className='text-xl font-bold'>Cooking method:</h2>
-            <li>Cut the chicken into bite-sized pieces and marinate in a mixture of soy sauce, rice vinegar, honey, cornstarch, and sesame oil.Heat vegetable oil in a wok or large skillet over high heat.</li>
-            <h2 className='text-xl font-bold'>Ratting:</h2>
+            <li>{recipe?.cooking_style}</li>
+            <h2 className='text-xl font-bold'><Rating
+              placeholderRating={recipe.ratting}
+              readonly
+              emptySymbol={<FaRegStar />}
+              placeholderSymbol={<FaStar />}
+              fullSymbol={<FaStar />}
+            /> <span>{recipe.ratting}</span></h2>
           </div>
-          <button className="btn glass" onClick={() => handleAddFavorite(recipe)}>Add to favorite</button>
+          <button className="btn dark" onClick={() => handleAddFavorite(recipe)}>Add to favorite</button>
         </div>
       ))}
     </>

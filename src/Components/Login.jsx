@@ -20,7 +20,6 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    setError('')
 
     signIn(email, password)
       .then(res => {
@@ -28,7 +27,7 @@ const Login = () => {
         navigate(from, {replace: true})
       })
       .catch((error) => {
-        setError("User not found. Please Register");
+        setError(error.message);
       });
   }
 
@@ -37,6 +36,7 @@ const Login = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError('')
       })
       .catch((error) => {
         setError(error?.message);
@@ -48,6 +48,7 @@ const Login = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError('')
       })
       .catch((error) => {
         setError(error?.message);

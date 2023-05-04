@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, creatingUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     const handleRegister = event => {
         event.preventDefault();
@@ -23,14 +23,16 @@ const Register = () => {
             setError('Passwords do not match');
             return;
         }
-        createUser(email, password)
+        createUser(email, password, photoUrl)
             .then(res => {
                 const createdUser = res.user;
                 console.log(createdUser);
+                setError('');
+                event.target.reset();
             })
             .catch(error => {
                 setError(error?.message);
-            })
+            })  
     }
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-500 flex flex-col justify-center sm:py-12">
@@ -46,7 +48,7 @@ const Register = () => {
                             <input type="email" name="email" id="email" className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600" required />
 
                             <label className="font-semibold text-gray-600 pb-1 block">Photo URL</label>
-                            <input type="text" name="photoUrl" id="photoUrl" className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600" />
+                            <input type="text" name="photoUrl" id="photoUrl" className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600" required />
 
                             <label className="font-semibold text-gray-600 pb-1 block">Password</label>
                             <input type="password" name="password" id="password" className="border-2 border-gray-300 rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-600" required />
