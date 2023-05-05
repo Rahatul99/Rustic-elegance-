@@ -34,14 +34,14 @@ const Cards = () => {
     return (
         <>
             {data.map((item, index) => (
-                <div className="card w-96 glass" key={index}>
+                <div className="card md:h-90 md:w-98 glass" key={index}>
                     <figure><LazyLoad><img src={item.chef_img} alt="car!" /></LazyLoad></figure>
                     <div className="card-body">
                         <h2 className="card-title">Chef Name:{item.name}</h2>
                         <p>Experince: {item.experience}</p>
                         <p>Numbers of recipes: {item?.number_of_recipes}</p>
                         <p>likes: {item?.total_like}</p>
-                        <Link to={`/recipe/${item.id_}`} className="btn btn-primary">
+                        <Link to={`/recipe/${item.id_}`} className="btn btn-dark">
                         View Recipes 
                         </Link>
                     </div>

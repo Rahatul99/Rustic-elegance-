@@ -10,7 +10,7 @@ const RestRecipe = ({ recipes, handleAddFavorite }) => {
   return (
     <>
       {recipes?.map((recipe) => (
-        <div className="card w-96 backdrop-blur-sm bg-white/20 p-5">
+        <div className="card backdrop-blur-sm md:h-[80%] bg-white/20 p-5">
           <figure><img src={recipe?.recipe_img} alt="" /></figure>
           <div className="card-body">
             <h2 className="card-title text-xl font-bold">Recipe Name:{recipe?.recipe_name}</h2>

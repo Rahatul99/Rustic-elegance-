@@ -7,7 +7,7 @@ const Popular = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="relative">
-                    <div className='grid md:grid-cols-3 gap-4 justify-items-center'>
+                    <div className='grid md:grid-cols-3 gap-4 justify-center'>
                         <div className="card w-96 backdrop-blur-sm bg-white/20 p-5">
                             <figure className='md:absolute left-[45%] top-[-40%]'><FaUtensils className='w-10 h-10' /></figure>
                             <div className="card-body items-center">

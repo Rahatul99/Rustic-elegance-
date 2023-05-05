@@ -46,7 +46,7 @@ const Recipe = () => {
 
                             <ToastContainer />
 
-                            <div className='grid md:grid-cols-3 gap-4 justify-items-center'>
+                            <div className='grid md:grid-cols-3 gap-4 justify-items-center items-center'>
                                 <RestRecipe recipes={chef.recipes} handleAddFavorite={handleAddFavorite} key={chef.id} />
                             </div>
                         </div>
